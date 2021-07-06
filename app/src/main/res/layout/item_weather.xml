@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.alansoft.weatherforecast.data.response.SealedViewHolderData.WeatherItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/today"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/local"
+            app:layout_constraintRight_toLeftOf="@+id/tomorrow"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconToday"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImg="@{item.weather.size() > 0 ? item.weather.get(0).weatherStateAbbr : null}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/weatherStateNameToday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.weather.size() > 0 ? item.weather.get(0).weatherStateName : null}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@+id/theTempToday"
+                app:layout_constraintLeft_toRightOf="@+id/iconToday"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iconToday" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/theTempToday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.weather.size() > 0 ? item.weather.get(0).theTempString : null}"
+                android:textColor="@color/design_default_color_error"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@+id/iconToday"
+                app:layout_constraintLeft_toRightOf="@+id/iconToday"
+                app:layout_constraintRight_toLeftOf="@+id/humidityToday"
+                app:layout_constraintTop_toBottomOf="@+id/weatherStateNameToday" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/humidityToday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.weather.size() > 0 ? item.weather.get(0).humidityString : null}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@+id/iconToday"
+                app:layout_constraintLeft_toRightOf="@+id/theTempToday"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weatherStateNameToday" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tomorrow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/today"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconTomorrow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImg="@{item.weather.size() > 1 ? item.weather.get(1).weatherStateAbbr : null}" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/weatherStateNameTomorrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.weather.size() > 1 ? item.weather.get(1).weatherStateName : null}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@+id/theTempTomorrow"
+                app:layout_constraintLeft_toRightOf="@+id/iconTomorrow"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iconTomorrow" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/theTempTomorrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.weather.size() > 1 ? item.weather.get(1).theTempString : null}"
+                android:textColor="@color/design_default_color_error"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@+id/iconTomorrow"
+                app:layout_constraintLeft_toRightOf="@+id/iconTomorrow"
+                app:layout_constraintRight_toLeftOf="@+id/humidityTomorrow"
+                app:layout_constraintTop_toBottomOf="@+id/weatherStateNameTomorrow" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/humidityTomorrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.weather.size() > 1 ? item.weather.get(1).humidityString : null}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@+id/iconTomorrow"
+                app:layout_constraintLeft_toRightOf="@+id/theTempTomorrow"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weatherStateNameTomorrow" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/local"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{item.location}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/today"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
